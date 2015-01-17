@@ -6,7 +6,7 @@
 /*   By: hades <hades@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/17 21:34:44 by hades             #+#    #+#             */
-/*   Updated: 2015/01/17 22:52:50 by hades            ###   ########.fr       */
+/*   Updated: 2015/01/17 23:01:40 by hades            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,13 @@ CPUmodule::~CPUmodule( void ) { return ; }
 //getter
 int			CPUmodule::getPosition( void ) const {
 	return this->_position;
+}
+
+//other
+void		CPUmodule::findData( void ) {
+	
+
+	return ;
 }
 
 std::string CPUmodule::getData( void ) const {

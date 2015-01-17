@@ -9,6 +9,7 @@ int	main() {
 	std::string							fileLine;
 	std::map<std::string, std::string>	cpu_info;
 	std::vector<std::string>			cpu_cores_speed;
+	std::string							data;
 
 	std::size_t	index;
 
@@ -44,9 +45,9 @@ int	main() {
 		}
 	}
 
-	std::cout << "CPU name : " << cpu_info["model_name"] << std::endl;
-	std::cout << "CPU vendor ID : " << cpu_info["vendor_id"] << std::endl;
-	std::cout << "CPU cores : " << cpu_info["cores"] << std::endl;
+	data =  "CPU name : " + cpu_info["model_name"] + " | ";
+	data = data + "CPU vendor ID : " + cpu_info["vendor_id"] + " | ";
+	data = data + "CPU cores : " + cpu_info["cores"] + " | ";
 
 	if (atoi(cpu_info["cores"].c_str()) > 0)
 	{
@@ -55,10 +56,12 @@ int	main() {
 
 		for (it = cpu_cores_speed.begin(); it != cpu_cores_speed.end(); it++)
 		{
-			std::cout << "CPU speed core #" << coreId << " : " << *it << std::endl;
+			data =  data + *it;
 			++coreId;
 		}
 	}
+
+	std::cout << data << std::endl;
 
 	return 0;
 }
