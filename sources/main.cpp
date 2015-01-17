@@ -3,21 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hades <hades@student.42.fr>                +#+  +:+       +#+        */
+/*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/17 16:54:38 by alex              #+#    #+#             */
-/*   Updated: 2015/01/17 17:40:21 by hades            ###   ########.fr       */
+/*   Updated: 2015/01/17 18:12:12 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <string.h>
+#include "../headers/Ncurses.class.hpp"
 
 int main(int argc, char const *argv[])
 {
 	if (argc == 1) {
 		/* ncurses */
-		std::cout << "ncruses" << std::endl;
+		std::cout << "ncurses" << std::endl;
+
+		Ncurses		ncurse;
+
+		ncurse.display();
 	}
 	else if (strcmp(argv[1], "-g") == 0) {
 		/* graphique */

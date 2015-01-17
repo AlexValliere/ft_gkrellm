@@ -6,7 +6,7 @@
 /*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/17 17:20:26 by alex              #+#    #+#             */
-/*   Updated: 2015/01/17 17:38:02 by alex             ###   ########.fr       */
+/*   Updated: 2015/01/17 18:12:07 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ void			Ncurses::display() {
 		refresh();
 		usleep(this->_refreshRate);
 	}
+
+	endwin();
 
 	return ;
 }
