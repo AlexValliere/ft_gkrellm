@@ -6,7 +6,7 @@
 #    By: alex <alex@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/01/07 11:47:18 by alex              #+#    #+#              #
-#    Updated: 2015/01/17 17:01:54 by alex             ###   ########.fr        #
+#    Updated: 2015/01/17 17:21:03 by alex             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,8 +16,7 @@ CFLAGS		= -Wall -Werror -Wextra -g
 LIBS 		= -lncurses
 RM			= rm -rf
 
-SRC			=	sources/IMonitorDisplay.class.cpp \
-				sources/IMonitorModule.class.cpp \
+SRC			=	sources/Ncurses.class.cpp \
 				sources/main.cpp
 
 OBJ			= $(SRC:.cpp=.o)
