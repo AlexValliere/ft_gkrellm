@@ -25,14 +25,11 @@ int	main(int argc, char *argv[])
 	window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
 	gtk_window_set_title (GTK_WINDOW (window), "Example 4");
 	gtk_window_set_position(GTK_WINDOW(window), GTK_WIN_POS_CENTER);
-	g_signal_connect (window, "destroy", G_CALLBACK (OnDestroy), NULL);
+	g_signal_connect (window, "destroy", G_CALLBACK (OnDestroy), NULL); /* Connexion du signal "destroy" de la fenetre */
 
-	/* Connexion du signal "destroy" de la fenetre */
-    g_signal_connect(G_OBJECT(window), "destroy", G_CALLBACK(gtk_main_quit), NULL);
-
-    /* Insertion du bouton */
-    // AddBtn(window, EXEMPLE_1); // Quitter en cliquant sur le bouton
-    AddBtn(window, EXEMPLE_2); // Quitter en cliquant sur le bouton ou en appuyant sur les touches claviers alt + q
+	/* Insertion du bouton */
+	// AddBtn(window, EXEMPLE_1); // Quitter en cliquant sur le bouton
+	AddBtn(window, EXEMPLE_2); // Quitter en cliquant sur le bouton ou en appuyant sur les touches claviers alt + q
 
 	// GtkWidget *pQuitBtn;
 	/*  GTK+ permet l'utilisation de quatre fonctions différentes pour initialiser un button
