@@ -6,7 +6,7 @@
 /*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/17 17:18:58 by alex              #+#    #+#             */
-/*   Updated: 2015/01/17 17:21:35 by alex             ###   ########.fr       */
+/*   Updated: 2015/01/17 17:24:00 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,13 @@
 class Ncurses : public IMonitorDisplay
 {
 public:
-	Ncurses();
+	Ncurses(void);
+	Ncurses(Ncurses const & object);
 	~Ncurses();
+
+	void		display();
+
+	Ncurses&	operator=(Ncurses const & rhs);
 };
 
 #endif
