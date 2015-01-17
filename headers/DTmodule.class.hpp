@@ -6,7 +6,7 @@
 /*   By: hades <hades@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/17 21:42:17 by hades             #+#    #+#             */
-/*   Updated: 2015/01/17 22:55:12 by hades            ###   ########.fr       */
+/*   Updated: 2015/01/18 00:11:25 by hades            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define DTMODULE_CLASS_HPP
 
 #include <iostream>
+#include "../headers/usual_functions.hpp"
 #include "IMonitorModule.class.hpp"
 
 class DTmodule : public IMonitorModule

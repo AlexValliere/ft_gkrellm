@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <iostream>
 
+
 int	main() {
 	std::ifstream						fileInput("/proc/cpuinfo");
 	std::string							fileLine;
@@ -56,7 +57,7 @@ int	main() {
 
 		for (it = cpu_cores_speed.begin(); it != cpu_cores_speed.end(); it++)
 		{
-			data =  data + *it;
+			data =  data + "CPU speed core #" + ft_itoa(coreId) + " : " + *it;
 			++coreId;
 		}
 	}

@@ -6,7 +6,7 @@
 /*   By: hades <hades@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/12 12:46:47 by hades             #+#    #+#             */
-/*   Updated: 2015/01/17 17:30:15 by hades            ###   ########.fr       */
+/*   Updated: 2015/01/17 23:52:52 by hades            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,7 @@ void	 ft_get_value(double & t, double & w, std::string line) {
 
 	for (unsigned int i = 0; i < tab.size(); i++)
 		t = t + tab[i];
-}
 
-int				main( void ) {
 
 	std::string 			 line;
 	double			value_t_1 = 0;
@@ -82,7 +80,7 @@ int				main( void ) {
 		cpu = 0;
 	}
 
-	std::cout << "CPU usage : " << cpu << "\%" << std::endl;
+	data = data + " CPU usage : " + ft_itoa(cpu) + "\%";
 
 	// std::cout << "value_t_1 :" << value_t_1 << " || value_w_1 :" << value_w_1 << std::endl;   
 	// std::cout << "value_t_2 :" << value_t_2 << " || value_w_2 :" << value_w_2 << std::endl;   
@@ -94,8 +92,7 @@ int				main( void ) {
 	// std::cout << "line[i] : " << line[i] << std::endl;
 	// std::cout << line << std::endl;
 
+	this->_data = data;
 
 
-
-	return (0);
 }

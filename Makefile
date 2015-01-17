@@ -6,7 +6,7 @@
 #    By: hades <hades@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/01/07 11:47:18 by alex              #+#    #+#              #
-#    Updated: 2015/01/17 21:49:10 by hades            ###   ########.fr        #
+#    Updated: 2015/01/17 23:55:05 by hades            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ SRC			=	sources/IMonitorDisplay.class.cpp \
 				sources/HSmodule.class.cpp \
 				sources/OSmodule.class.cpp \
 				sources/Rmodule.class.cpp \
+				sources/usual_functions.cpp \
 				sources/main.cpp 
 
 OBJ			= $(SRC:.cpp=.o)
