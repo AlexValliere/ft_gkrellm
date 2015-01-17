@@ -1,37 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Ncurses.class.hpp                                  :+:      :+:    :+:   */
+/*   DTmodule.class.hpp                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hades <hades@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/01/17 17:18:58 by alex              #+#    #+#             */
-/*   Updated: 2015/01/17 21:06:56 by hades            ###   ########.fr       */
+/*   Created: 2015/01/17 21:42:17 by hades             #+#    #+#             */
+/*   Updated: 2015/01/17 22:04:09 by hades            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef NCURSE_CLASS_HPP
-# define NCURSE_CLASS_HPP
+#ifndef DTMODULE_CLASS_HPP
+# define DTMODULE_CLASS_HPP
 
-# include <ncurses.h>
-# include "IMonitorDisplay.class.hpp"
+#include <iostream>
+#include "IMonitorModule.class.hpp"
 
-class Ncurses : public IMonitorDisplay
+class DTmodule : public IMonitorModule
 {
 public:
-	Ncurses(void);
-	Ncurses(Ncurses const & object);
-	~Ncurses();
+			DTmodule( void );
+			~DTmodule( void );
 
-	void			display();
-
-	Ncurses&		operator=(Ncurses const & rhs);
-
-	unsigned int	getRefreshRate() const;
-	void			setRefreshRate(unsigned int newRefreshRate);
+// getter
+int			getPosition( void ) const;
+std::string	getData( void ) const;	
 
 private:
-	unsigned int	_refreshRate;
+int				_position;
+std::string 	_data;
+
+			DTmodule( DTmodule const & model );
+DTmodule 	& operator=( DTmodule const & model );
 };
 
-#endif
+
+#endif /* DTMODULE_CLASS_HPP */

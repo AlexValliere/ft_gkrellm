@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   IMonitorModule.class.hpp                           :+:      :+:    :+:   */
+/*   HSmodule.class.cpp                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hades <hades@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/01/17 16:56:10 by alex              #+#    #+#             */
-/*   Updated: 2015/01/17 21:58:20 by hades            ###   ########.fr       */
+/*   Created: 2015/01/17 21:33:45 by hades             #+#    #+#             */
+/*   Updated: 2015/01/17 22:07:01 by hades            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef IMONITORMODULE_CLASS_HPP
-# define IMONITORMODULE_CLASS_HPP
+#include <iostream>
+#include "../headers/HSmodule.class.hpp"
 
-class IMonitorModule
-{
-public:
-	// virtual findata() = 0;
-	virtual ~IMonitorModule();
-};
+HSmodule::HSmodule( void ) { return ; }
+HSmodule::~HSmodule( void ) { return ; }
 
-#endif
+
+//getter
+int			HSmodule::getPosition( void ) const {
+	return this->_position;
+}
+
+std::string HSmodule::getData( void ) const {
+	return this->_data;
+}

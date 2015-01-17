@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Ncurses.class.cpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: hades <hades@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/17 17:20:26 by alex              #+#    #+#             */
-/*   Updated: 2015/01/17 18:12:07 by alex             ###   ########.fr       */
+/*   Updated: 2015/01/17 22:09:06 by hades            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,16 @@ void			Ncurses::setRefreshRate(unsigned int newRefreshRate) {
 	this->_refreshRate = newRefreshRate;
 }
 
+void 			ft_draw_square( int i ) {
+	mvprintw(0, 0, "================================================================");
+	while(i) {
+		i--;
+	}
+
+	return ;
+}
+
+
 void			Ncurses::display() {
 	int		maxHeight, maxWidth;
 	int		input = 0;
@@ -57,7 +67,7 @@ void			Ncurses::display() {
 	{
 		clear();
 		mvprintw(maxHeight - 1, maxWidth - 25, "press esc to exit");
-
+		ft_draw_square(5);
 		refresh();
 		usleep(this->_refreshRate);
 	}

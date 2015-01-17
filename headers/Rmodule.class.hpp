@@ -1,37 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Ncurses.class.hpp                                  :+:      :+:    :+:   */
+/*   Rmodule.class.hpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hades <hades@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/01/17 17:18:58 by alex              #+#    #+#             */
-/*   Updated: 2015/01/17 21:06:56 by hades            ###   ########.fr       */
+/*   Created: 2015/01/17 21:42:37 by hades             #+#    #+#             */
+/*   Updated: 2015/01/17 22:04:27 by hades            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef NCURSE_CLASS_HPP
-# define NCURSE_CLASS_HPP
+#ifndef RMODULE_CLASS_HPP
+# define RMODULE_CLASS_HPP
 
-# include <ncurses.h>
-# include "IMonitorDisplay.class.hpp"
+#include <iostream>
+#include "IMonitorModule.class.hpp"
 
-class Ncurses : public IMonitorDisplay
+class Rmodule : public IMonitorModule
 {
 public:
-	Ncurses(void);
-	Ncurses(Ncurses const & object);
-	~Ncurses();
+			Rmodule( void );
+			~Rmodule( void );
 
-	void			display();
-
-	Ncurses&		operator=(Ncurses const & rhs);
-
-	unsigned int	getRefreshRate() const;
-	void			setRefreshRate(unsigned int newRefreshRate);
+// getter
+int			getPosition( void ) const;
+std::string	getData( void ) const;
 
 private:
-	unsigned int	_refreshRate;
+int				_position;
+std::string 	_data;
+
+			Rmodule( Rmodule const & model );
+Rmodule 	& operator=( Rmodule const & model );
 };
 
-#endif
+
+#endif /* RMODULE_CLASS_HPP */

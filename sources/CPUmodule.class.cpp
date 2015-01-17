@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   IMonitorModule.class.hpp                           :+:      :+:    :+:   */
+/*   CPUmodule.class.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hades <hades@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/01/17 16:56:10 by alex              #+#    #+#             */
-/*   Updated: 2015/01/17 21:58:20 by hades            ###   ########.fr       */
+/*   Created: 2015/01/17 21:34:44 by hades             #+#    #+#             */
+/*   Updated: 2015/01/17 22:06:17 by hades            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef IMONITORMODULE_CLASS_HPP
-# define IMONITORMODULE_CLASS_HPP
+#include <iostream>
+#include "../headers/CPUmodule.class.hpp"
 
-class IMonitorModule
-{
-public:
-	// virtual findata() = 0;
-	virtual ~IMonitorModule();
-};
+CPUmodule::CPUmodule( void ) { return ; }
+CPUmodule::~CPUmodule( void ) { return ; }
 
-#endif
+//getter
+int			CPUmodule::getPosition( void ) const {
+	return this->_position;
+}
+
+std::string CPUmodule::getData( void ) const {
+	return this->_data;
+}
