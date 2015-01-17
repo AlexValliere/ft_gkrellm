@@ -6,7 +6,7 @@
 /*   By: hades <hades@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/17 21:42:17 by hades             #+#    #+#             */
-/*   Updated: 2015/01/17 22:04:09 by hades            ###   ########.fr       */
+/*   Updated: 2015/01/17 22:55:12 by hades            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,20 @@
 class DTmodule : public IMonitorModule
 {
 public:
-			DTmodule( void );
+			DTmodule( int position );
 			~DTmodule( void );
 
 // getter
 int			getPosition( void ) const;
 std::string	getData( void ) const;	
+std::string	getName( void ) const;
 
 private:
 int				_position;
 std::string 	_data;
+std::string		_name;
 
+			DTmodule( void );
 			DTmodule( DTmodule const & model );
 DTmodule 	& operator=( DTmodule const & model );
 };

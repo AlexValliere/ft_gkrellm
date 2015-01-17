@@ -6,14 +6,14 @@
 /*   By: hades <hades@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/17 21:35:05 by hades             #+#    #+#             */
-/*   Updated: 2015/01/17 22:06:45 by hades            ###   ########.fr       */
+/*   Updated: 2015/01/17 22:57:28 by hades            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include "../headers/Rmodule.class.hpp"
 
-Rmodule::Rmodule( void ) { return ; }
+Rmodule::Rmodule( int position ) : _position(position), _name("RAM module") { return ; }
 Rmodule::~Rmodule( void ) { return ; }
 
 
@@ -24,4 +24,8 @@ int			Rmodule::getPosition( void ) const {
 
 std::string Rmodule::getData( void ) const {
 	return this->_data;
+}
+
+std::string Rmodule::getName( void ) const {
+	return this->_name;
 }
