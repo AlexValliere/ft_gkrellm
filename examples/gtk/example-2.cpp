@@ -1,5 +1,11 @@
 #include <gtk/gtk.h>
 
+/*
+ *
+ *		LES FENETRES ALIAS WINDOW
+ *
+ */
+
 void OnDestroy(GtkWidget *pWidget, gpointer pData)
 {
 	/* Arret de la boucle evenementielle */

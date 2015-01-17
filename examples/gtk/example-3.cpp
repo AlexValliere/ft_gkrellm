@@ -1,6 +1,12 @@
 #include <gtk/gtk.h>
 #include <iostream>
 
+/*
+ *
+ *		LES TEXTES ALIAS LABEL
+ *
+ */
+
 void OnDestroy(GtkWidget *pWidget, gpointer pData)
 {
 	gtk_main_quit();
@@ -86,7 +92,7 @@ int main(int argc, char *argv[])
 	std::string	txt = "<span foreground=\"#FF4500\"><b>New</b> test label<sup><b>42</b></sup></span>";
 	GtkWidget	*pLabel = gtk_label_new(txt.c_str());
 
-	// Permet d'activer les balises b, big (font++), i, s, sub, sup, small(font--), tt (type teletype: genre courrier new en font), u
+	// Permet d'activer les balises  Pango: b, big (font++), i, s, sub, sup, small(font--), tt (type teletype: genre courrier new en font), u
 	gtk_label_set_use_markup(GTK_LABEL(pLabel), true);
 
 	gtk_container_add(GTK_CONTAINER(window), pLabel);
