@@ -23,7 +23,7 @@ RAM : - #include <sys/sysinfo.h> - sysinfo / exec - cat /proc/meminfo
 
 Network throughput
 
-	exec - iconfig -a ou iconfig interface (interface from iconfig) (http://askubuntu.com/questions/257263/how-to-display-network-traffic-in-terminal)
+	exec - ifconfig -a ou ifconfig interface (interface from iconfig) (http://askubuntu.com/questions/257263/how-to-display-network-traffic-in-terminal)
 	
 ----------
 
