@@ -6,7 +6,7 @@
 /*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/17 16:56:11 by alex              #+#    #+#             */
-/*   Updated: 2015/01/17 16:58:19 by alex             ###   ########.fr       */
+/*   Updated: 2015/01/17 17:03:39 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,7 @@
 class IMonitorDisplay
 {
 public:
-	IMonitorDisplay(void);
-	IMonitorDisplay(IMonitorDisplay const & object);
-	~IMonitorDisplay();
-	
-	IMonitorDisplay&	operator=(IMonitorDisplay const & rhs);
+	virtual ~IMonitorDisplay();
 };
 
 #endif
