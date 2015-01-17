@@ -1,23 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   IMonitorModule.class.hpp                           :+:      :+:    :+:   */
+/*   Rmodule.class.cpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hades <hades@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/01/17 16:56:10 by alex              #+#    #+#             */
-/*   Updated: 2015/01/17 21:58:20 by hades            ###   ########.fr       */
+/*   Created: 2015/01/17 21:35:05 by hades             #+#    #+#             */
+/*   Updated: 2015/01/17 22:57:28 by hades            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef IMONITORMODULE_CLASS_HPP
-# define IMONITORMODULE_CLASS_HPP
+#include <iostream>
+#include "../headers/Rmodule.class.hpp"
 
-class IMonitorModule
-{
-public:
-	// virtual findata() = 0;
-	virtual ~IMonitorModule();
-};
+Rmodule::Rmodule( int position ) : _position(position), _name("RAM module") { return ; }
+Rmodule::~Rmodule( void ) { return ; }
 
-#endif
+
+//getter
+int			Rmodule::getPosition( void ) const {
+	return this->_position;
+}
+
+std::string Rmodule::getData( void ) const {
+	return this->_data;
+}
+
+std::string Rmodule::getName( void ) const {
+	return this->_name;
+}

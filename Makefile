@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: alex <alex@student.42.fr>                  +#+  +:+       +#+         #
+#    By: hades <hades@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/01/07 11:47:18 by alex              #+#    #+#              #
-#    Updated: 2015/01/17 17:41:47 by alex             ###   ########.fr        #
+#    Updated: 2015/01/17 23:55:05 by hades            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,13 @@ RM			= rm -rf
 SRC			=	sources/IMonitorDisplay.class.cpp \
 				sources/IMonitorModule.class.cpp \
 				sources/Ncurses.class.cpp \
-				sources/main.cpp
+				sources/CPUmodule.class.cpp \
+				sources/DTmodule.class.cpp \
+				sources/HSmodule.class.cpp \
+				sources/OSmodule.class.cpp \
+				sources/Rmodule.class.cpp \
+				sources/usual_functions.cpp \
+				sources/main.cpp 
 
 OBJ			= $(SRC:.cpp=.o)
 

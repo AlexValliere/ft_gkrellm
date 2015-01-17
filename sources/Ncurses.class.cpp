@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Ncurses.class.cpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: hades <hades@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/17 17:20:26 by alex              #+#    #+#             */
-/*   Updated: 2015/01/17 18:12:07 by alex             ###   ########.fr       */
+/*   Updated: 2015/01/17 22:37:57 by hades            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,32 @@ void			Ncurses::setRefreshRate(unsigned int newRefreshRate) {
 	this->_refreshRate = newRefreshRate;
 }
 
+void 			ft_draw_square( int maxHeight, int maxWidth, int i ) {
+	int j = 0;
+
+	maxHeight = maxHeight;
+
+	i = i + i;
+	while(i >= 0) {
+		if ((i % 4) == 0) {
+			while ( j < maxWidth - 1 ) {
+				mvprintw(i, j, "=");
+				j++;
+			}
+			j = 0;
+		}
+		else if (i) {
+			mvprintw( i, 0, "|");
+			mvprintw( i , 25, "|");
+			mvprintw( i, maxWidth - 1, "|");
+		}
+		i--;
+	}
+
+	return ;
+}
+
+
 void			Ncurses::display() {
 	int		maxHeight, maxWidth;
 	int		input = 0;
@@ -57,7 +83,7 @@ void			Ncurses::display() {
 	{
 		clear();
 		mvprintw(maxHeight - 1, maxWidth - 25, "press esc to exit");
-
+		ft_draw_square( maxHeight, maxWidth, 10);
 		refresh();
 		usleep(this->_refreshRate);
 	}

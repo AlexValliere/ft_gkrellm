@@ -1,23 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   IMonitorModule.class.hpp                           :+:      :+:    :+:   */
+/*   usual_functions.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hades <hades@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/01/17 16:56:10 by alex              #+#    #+#             */
-/*   Updated: 2015/01/17 21:58:20 by hades            ###   ########.fr       */
+/*   Created: 2015/01/17 23:48:02 by hades             #+#    #+#             */
+/*   Updated: 2015/01/17 23:51:48 by hades            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef IMONITORMODULE_CLASS_HPP
-# define IMONITORMODULE_CLASS_HPP
+#ifndef USUAL_FUNCTIONS
+# define USUAL_FUNCTIONS
 
-class IMonitorModule
-{
-public:
-	// virtual findata() = 0;
-	virtual ~IMonitorModule();
-};
+char			*ft_itoa(int n);
+void	 		ft_get_value(double & t, double & w, std::string line);
 
-#endif
+#endif /* USUAL_FUNCTIONS */
