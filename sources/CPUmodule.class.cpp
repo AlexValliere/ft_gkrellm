@@ -6,7 +6,7 @@
 /*   By: hades <hades@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/17 21:34:44 by hades             #+#    #+#             */
-/*   Updated: 2015/01/18 14:36:25 by hades            ###   ########.fr       */
+/*   Updated: 2015/01/18 14:52:30 by hades            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void		CPUmodule::findData( void ) {
 
 		for (it = cpu_cores_speed.begin(); it != cpu_cores_speed.end(); it++)
 		{
-			data =  data + "CPU speed core #" + ft_itoa(coreId) + " : " + *it;
+			data =  data + " [" + *it + "Mhz] ";
 			++coreId;
 		}
 	}
@@ -141,7 +141,9 @@ std::string CPUmodule::getName( void ) const {
 void		CPUmodule::drawNcurses( int maxWidth ) const {
 	int i = 26, j = 0, count = 0;
 	if (this->_position == 1) {
+		attron(COLOR_PAIR(2));
 		mvprintw(2, 2, this->getName().c_str());
+		attroff(COLOR_PAIR(2));
 		while (count < 3) {
 			while (i < maxWidth && this->_data[j]) {
 				mvaddch(1 + count, i, this->_data[j]);
@@ -154,7 +156,9 @@ void		CPUmodule::drawNcurses( int maxWidth ) const {
 
 	}
 	else if (this->_position == 2) {
+		attron(COLOR_PAIR(2));
 		mvprintw(6, 2, this->getName().c_str());
+		attroff(COLOR_PAIR(2));
 		while (count < 3) {
 			while (i < maxWidth && this->_data[j]) {
 				mvaddch(5 + count, i, this->_data[j]);
@@ -166,7 +170,9 @@ void		CPUmodule::drawNcurses( int maxWidth ) const {
 		}
 	}
 	else if (this->_position == 3) {
+		attron(COLOR_PAIR(2));
 		mvprintw(10, 2, this->getName().c_str());
+		attroff(COLOR_PAIR(2));
 		while (count < 3) {
 			while (i < maxWidth && this->_data[j]) {
 				mvaddch(9 + count, i, this->_data[j]);
@@ -178,7 +184,9 @@ void		CPUmodule::drawNcurses( int maxWidth ) const {
 		}
 	}
 	else if (this->_position == 4) {
+		attron(COLOR_PAIR(2));
 		mvprintw(14, 2, this->getName().c_str());
+		attroff(COLOR_PAIR(2));
 		while (count < 3) {
 			while (i < maxWidth && this->_data[j]) {
 				mvaddch(13 + count, i, this->_data[j]);
@@ -190,7 +198,9 @@ void		CPUmodule::drawNcurses( int maxWidth ) const {
 		}
 	}
 	else  {
+		attron(COLOR_PAIR(2));
 		mvprintw(18, 2, this->getName().c_str());
+		attroff(COLOR_PAIR(2));
 		while (count < 3) {
 			while (i < maxWidth && this->_data[j]) {
 				mvaddch(17 + count, i, this->_data[j]);

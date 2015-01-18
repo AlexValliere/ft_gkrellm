@@ -6,7 +6,7 @@
 /*   By: hades <hades@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/17 17:20:26 by alex              #+#    #+#             */
-/*   Updated: 2015/01/18 14:25:45 by hades            ###   ########.fr       */
+/*   Updated: 2015/01/18 14:50:31 by hades            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ void			Ncurses::display() {
 	curs_set(0);
 	start_color();
 	init_pair(1, COLOR_BLACK, COLOR_WHITE);
+	init_pair(2, COLOR_RED, COLOR_WHITE);
 	wbkgd(stdscr,COLOR_PAIR(1));
 	getmaxyx(stdscr, maxHeight, maxWidth);
 
