@@ -6,7 +6,7 @@
 /*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/17 21:42:37 by hades             #+#    #+#             */
-/*   Updated: 2015/01/18 16:39:47 by alex             ###   ########.fr       */
+/*   Updated: 2015/01/18 18:27:50 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ public:
 	void			addToGtk(GtkWidget* widget) const;
 	void			findData( void );
 	void			drawNcurses( int maxWidth ) const;
+	void			refreshLabel() const;
 
 private:
 	int				_position;

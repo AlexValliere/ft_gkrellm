@@ -6,7 +6,7 @@
 /*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/18 00:55:22 by alex              #+#    #+#             */
-/*   Updated: 2015/01/18 18:07:37 by alex             ###   ########.fr       */
+/*   Updated: 2015/01/18 18:27:01 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ gboolean	OnTimeout(gpointer data)
 	(void)data;
 
 	Refresh::cpu_module.findData();
-	Refresh::ram_module.findData();
+	Refresh::ram_module.refreshLabel();
 
 	return true;
 }
@@ -50,13 +50,16 @@ GtkDisplay::GtkDisplay(int argc, char *argv[]) {
 	this->_pVBox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
 	gtk_container_add(GTK_CONTAINER(this->_window), this->_pVBox);
 
+	Refresh::pWindow = this->_window;
+	Refresh::pVBox = this->_pVBox;
+
 	return ;
 }
 
 void		GtkDisplay::addModule(IMonitorModule &module)	{ module.addToGtk(this->_pVBox); return ; }
 
 void		GtkDisplay::display() {
-	gtk_widget_show_all(this->_window);
+	gtk_widget_show_all(Refresh::pWindow);
 
 	g_timeout_add (100, OnTimeout, NULL);
 

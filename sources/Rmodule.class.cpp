@@ -6,13 +6,14 @@
 /*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/17 21:35:05 by hades             #+#    #+#             */
-/*   Updated: 2015/01/18 16:45:30 by alex             ###   ########.fr       */
+/*   Updated: 2015/01/18 18:29:00 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <sys/sysinfo.h>
 #include <ncurses.h>
+#include "../headers/Refresh.class.hpp"
 #include "../headers/Rmodule.class.hpp"
 #include "../headers/usual_functions.hpp"
 
@@ -73,7 +74,6 @@ void		Rmodule::findData( void ) {
 void		Rmodule::addToGtk(GtkWidget* widget) const {
 	std::string	text;
 	GtkWidget*	pFrame;
-	GtkWidget*	pLabel;
 	GtkWidget*	pVBoxFrame;
 
 	/* Creation du premier GtkFrame */
@@ -90,8 +90,21 @@ void		Rmodule::addToGtk(GtkWidget* widget) const {
 	text += "Free memory : " + this->_freeMem + "\n\n";
 	text += "System uptime : " + this->_uptime + "\n";
 	text += "Process count : " + this->_nbrProcess;
-	pLabel = gtk_label_new(text.c_str());
-	gtk_box_pack_start(GTK_BOX(pVBoxFrame), pLabel, TRUE, FALSE, 0);
+	Refresh::pMemLabel = gtk_label_new(text.c_str());
+	gtk_box_pack_start(GTK_BOX(pVBoxFrame), Refresh::pMemLabel, TRUE, FALSE, 0);
+}
+
+void		Rmodule::refreshLabel() const {
+	std::string	text;
+
+	Refresh::ram_module.findData();
+
+	text = "Total memory : " + this->_totalMem + "\n";
+	text += "Free memory : " + this->_freeMem + "\n\n";
+	text += "System uptime : " + this->_uptime + "\n";
+	text += "Process count : " + this->_nbrProcess;
+
+	gtk_label_set_text(GTK_LABEL(Refresh::pMemLabel), text.c_str());
 }
 
 void		Rmodule::drawNcurses( int maxWidth ) const {
