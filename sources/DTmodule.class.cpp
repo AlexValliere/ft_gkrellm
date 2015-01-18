@@ -6,7 +6,7 @@
 /*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/17 21:34:13 by hades             #+#    #+#             */
-/*   Updated: 2015/01/18 15:51:01 by alex             ###   ########.fr       */
+/*   Updated: 2015/01/18 18:39:01 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <ncurses.h>
 #include <gtk/gtk.h>
 #include "../headers/DTmodule.class.hpp"
+#include "../headers/Refresh.class.hpp"
 #include "../headers/usual_functions.hpp"
 
 DTmodule::DTmodule( int position ) : _position(position), _name("Date/time module") { this->findData(); return ; }
@@ -55,7 +56,6 @@ void		DTmodule::findData( void ) {
 void		DTmodule::addToGtk(GtkWidget* widget) const {
 	std::string	text;
 	GtkWidget*	pFrame;
-	GtkWidget*	pLabel;
 	GtkWidget*	pVBoxFrame;
 
 	/* Creation du premier GtkFrame */
@@ -69,8 +69,18 @@ void		DTmodule::addToGtk(GtkWidget* widget) const {
 
 	/* Creation et insertion des elements contenus dans le premier GtkFrame */
 	text = this->_date + " " + this->_time;
-	pLabel = gtk_label_new(text.c_str());
-	gtk_box_pack_start(GTK_BOX(pVBoxFrame), pLabel, TRUE, FALSE, 0);
+	Refresh::pDatetimeLabel = gtk_label_new(text.c_str());
+	gtk_box_pack_start(GTK_BOX(pVBoxFrame), Refresh::pDatetimeLabel, TRUE, FALSE, 0);
+}
+
+void		DTmodule::refreshLabel() const {
+	std::string	text;
+
+	Refresh::datetime_module.findData();
+
+	text = this->_date + " " + this->_time;
+
+	gtk_label_set_text(GTK_LABEL(Refresh::pDatetimeLabel), text.c_str());
 }
 
 void		DTmodule::drawNcurses( int maxWidth ) const {

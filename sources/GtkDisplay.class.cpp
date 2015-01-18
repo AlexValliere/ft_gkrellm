@@ -6,7 +6,7 @@
 /*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/18 00:55:22 by alex              #+#    #+#             */
-/*   Updated: 2015/01/18 18:27:01 by alex             ###   ########.fr       */
+/*   Updated: 2015/01/18 18:38:00 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ gboolean	OnTimeout(gpointer data)
 {
 	(void)data;
 
-	Refresh::cpu_module.findData();
+	Refresh::datetime_module.refreshLabel();
 	Refresh::ram_module.refreshLabel();
 
 	return true;

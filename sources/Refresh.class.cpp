@@ -6,7 +6,7 @@
 /*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/18 17:46:59 by alex              #+#    #+#             */
-/*   Updated: 2015/01/18 18:20:21 by alex             ###   ########.fr       */
+/*   Updated: 2015/01/18 18:38:03 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,9 @@
 
 CPUmodule	Refresh::cpu_module = 0;
 DTmodule	Refresh::datetime_module = 0;
-HSmodule	Refresh::host_and_user_names_module = 0;
-OSmodule	Refresh::os_module = 0;
 Rmodule		Refresh::ram_module = 0;
 
 GtkWidget*	Refresh::pWindow = 0;
 GtkWidget*	Refresh::pVBox = 0;
+GtkWidget*	Refresh::pDatetimeLabel = 0;
 GtkWidget*	Refresh::pMemLabel = 0;
