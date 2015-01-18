@@ -6,7 +6,7 @@
 #    By: alex <alex@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/01/07 11:47:18 by alex              #+#    #+#              #
-#    Updated: 2015/01/18 16:30:36 by alex             ###   ########.fr        #
+#    Updated: 2015/01/18 16:47:50 by alex             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ RM			= rm -rf
 SRC			=	sources/IMonitorDisplay.class.cpp \
 				sources/IMonitorModule.class.cpp \
 				sources/GtkDisplay.class.cpp \
+				sources/Ncurses.class.cpp \
 				sources/CPUmodule.class.cpp \
 				sources/DTmodule.class.cpp \
 				sources/HSmodule.class.cpp \

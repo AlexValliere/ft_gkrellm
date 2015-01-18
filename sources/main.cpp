@@ -6,7 +6,7 @@
 /*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/17 16:54:38 by alex              #+#    #+#             */
-/*   Updated: 2015/01/18 16:32:51 by alex             ###   ########.fr       */
+/*   Updated: 2015/01/18 16:48:08 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #include "../headers/HSmodule.class.hpp"
 #include "../headers/OSmodule.class.hpp"
 #include "../headers/Rmodule.class.hpp"
-// #include "../headers/Ncurses.class.hpp"
+#include "../headers/Ncurses.class.hpp"
 
 
 int main(int argc, char *argv[])
@@ -27,9 +27,9 @@ int main(int argc, char *argv[])
 	if (argc == 1) {
 		/* ncurses */
 
-		// Ncurses		ncurse;
+		Ncurses		ncurse;
 
-		// ncurse.display();
+		ncurse.display();
 	}
 	else if (strcmp(argv[1], "-g") == 0) {
 		/* graphique */
