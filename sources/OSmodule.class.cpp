@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   OSmodule.class.cpp                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hades <hades@student.42.fr>                +#+  +:+       +#+        */
+/*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/17 21:33:55 by hades             #+#    #+#             */
-/*   Updated: 2015/01/18 03:46:30 by hades            ###   ########.fr       */
+/*   Updated: 2015/01/18 15:20:28 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,34 +16,65 @@
 #include "../headers/OSmodule.class.hpp"
 
 OSmodule::OSmodule( int position ) : _position(position), _name("OS info module") { this->findData(); return ; }
-OSmodule::~OSmodule( void ) { return ; }
+OSmodule::~OSmodule( void )								{ return ; }
 
+OSmodule::OSmodule( OSmodule const & model )			{ *this = model; return ; }
 
-//getter
-int			OSmodule::getPosition( void ) const {
-	return this->_position;
+std::string OSmodule::getData( void ) const				{ return this->_data; }
+std::string OSmodule::getName( void ) const				{ return this->_name; }
+int			OSmodule::getPosition( void ) const			{ return this->_position; }
+
+std::string OSmodule::getArchitecture( void ) const		{ return this->_architecture; }
+std::string OSmodule::getReleaseVersion( void ) const	{ return this->_releaseVersion; }
+std::string OSmodule::getSystemName( void ) const		{ return this->_systemName; }
+
+OSmodule&	OSmodule::operator=( OSmodule const & model ) {
+	this->_data = model.getData();
+	this->_name = model.getName();
+	this->_position = model.getPosition();
+	this->_architecture = model.getArchitecture();
+	this->_releaseVersion = model.getReleaseVersion();
+	this->_systemName = model.getSystemName();
+
+	return *this;
 }
 
-std::string OSmodule::getData( void ) const {
-	return this->_data;
-}
-
-std::string OSmodule::getName( void ) const {
-	return this->_name;
-}
-
-//other
 void		OSmodule::findData( void ) {
-		struct utsname 	buffer;
-		std::string		data;
+	struct utsname 	buffer;
+	std::string		data;
 
-		uname(&buffer);
+	uname(&buffer);
 
-		data = "system name = " + static_cast<std::string>(buffer.sysname) + " | node name  = " + static_cast<std::string>(buffer.nodename) +
-		 " | release = " + static_cast<std::string>(buffer.release) + " | version = " + static_cast<std::string>(buffer.version) + " | machine = " + static_cast<std::string>(buffer.machine);
+	data = "system name = " + static_cast<std::string>(buffer.sysname) + " | node name  = " + static_cast<std::string>(buffer.nodename) +
+	 " | release = " + static_cast<std::string>(buffer.release) + " | version = " + static_cast<std::string>(buffer.version) + " | machine = " + static_cast<std::string>(buffer.machine);
 
-		this->_data = data;
-		
+	this->_data = data;
+
+	this->_systemName = static_cast<std::string>(buffer.sysname);
+	this->_releaseVersion = static_cast<std::string>(buffer.release);
+	this->_architecture = static_cast<std::string>(buffer.machine);
+}
+
+void		OSmodule::addToGtk(GtkWidget* widget) const {
+	std::string	text;
+	GtkWidget*	pFrame;
+	GtkWidget*	pLabel;
+	GtkWidget*	pVBoxFrame;
+
+	/* Creation du premier GtkFrame */
+	pFrame = gtk_frame_new(this->_name.c_str());
+	gtk_frame_set_shadow_type(GTK_FRAME(pFrame), GTK_SHADOW_ETCHED_OUT);
+	gtk_box_pack_start(GTK_BOX(widget), pFrame, FALSE, FALSE, 0);
+
+	/* Creation et insertion d une boite pour le premier GtkFrame */
+	pVBoxFrame = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
+	gtk_container_add(GTK_CONTAINER(pFrame), pVBoxFrame);
+
+	/* Creation et insertion des elements contenus dans le premier GtkFrame */
+	text = this->_systemName + " " + this->_architecture + "\n";
+	text += this->_releaseVersion;
+	pLabel = gtk_label_new(text.c_str());
+	gtk_box_pack_start(GTK_BOX(pVBoxFrame), pLabel, TRUE, FALSE, 0);
 }
 
 void		OSmodule::drawNcurses( int maxWidth ) const {

@@ -6,7 +6,7 @@
 /*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/18 00:55:31 by alex              #+#    #+#             */
-/*   Updated: 2015/01/18 01:31:55 by alex             ###   ########.fr       */
+/*   Updated: 2015/01/18 15:18:18 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,10 @@
 # define GTKDISPLAY_CLASS_HPP
 
 # include <gtk/gtk.h>
+# include "../headers/HSmodule.class.hpp"
+# include "../headers/OSmodule.class.hpp"
 # include "IMonitorDisplay.class.hpp"
+# include "IMonitorModule.class.hpp"
 
 class GtkDisplay : public IMonitorDisplay
 {
@@ -25,10 +28,13 @@ public:
 
 	GtkDisplay&	operator=(GtkDisplay const & rhs);
 
+	void		addHSModule(HSmodule module);
+	void		addOSModule(OSmodule module);
 	void		display();
 
 private:
 	GtkWidget*	_window;
+	GtkWidget*	_pVBox;
 
 	GtkDisplay(void);
 };

@@ -3,21 +3,22 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hades <hades@student.42.fr>                +#+  +:+       +#+         #
+#    By: alex <alex@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/01/07 11:47:18 by alex              #+#    #+#              #
-#    Updated: 2015/01/18 02:46:48 by hades            ###   ########.fr        #
+#    Updated: 2015/01/18 14:38:40 by alex             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= ft_gkrellm
 CC			= g++
-CFLAGS		= -Wall -Werror -Wextra -g
-LIBS 		= -lncurses
+CFLAGS		= -Wall -Werror -Wextra `pkg-config --cflags gtk+-3.0`
+LIBS 		= -lncurses `pkg-config --libs gtk+-3.0`
 RM			= rm -rf
 
 SRC			=	sources/IMonitorDisplay.class.cpp \
 				sources/IMonitorModule.class.cpp \
+				sources/GtkDisplay.class.cpp \
 				sources/Ncurses.class.cpp \
 				sources/CPUmodule.class.cpp \
 				sources/DTmodule.class.cpp \
