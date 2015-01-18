@@ -6,7 +6,7 @@
 /*   By: hades <hades@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/17 21:34:44 by hades             #+#    #+#             */
-/*   Updated: 2015/01/18 03:41:07 by hades            ###   ########.fr       */
+/*   Updated: 2015/01/18 14:36:25 by hades            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,7 @@ void		CPUmodule::findData( void ) {
 	std::vector<std::string>			cpu_cores_speed;
 	std::string							data;
 	std::string 						line;
-	double								value_t_1 = 0;
-	double								value_t_2 = 0;
-	double								value_w_1 = 0;
-	double								value_w_2 = 0;
-	double								value_final_t = 0;
-	double								value_final_w = 0;
-	double								cpu = 0;
+
 	std::size_t							index;
 
 	while (std::getline(fileInput, fileLine))
@@ -94,23 +88,35 @@ void		CPUmodule::findData( void ) {
 		}
 	}
 
-	std::ifstream			file("/proc/stat");
+	double								value_t_1 = 0;
+	// double								value_t_2 = 0;
+	double								value_w_1 = 0;
+	// double								value_w_2 = 0;
+	double								value_final_t = 0;
+	double								value_final_w = 0;
+	double								cpu = 0;
+	std::ifstream						file("/proc/stat");
+
 	if (file) {
 		getline(file, line);
 	}
 
 	ft_get_value(value_t_1, value_w_1, line);
 
-	std::ifstream			file2("/proc/stat");
-	if (file2) {
-		getline(file2, line);
-	}
+	// std::ifstream			file2("/proc/stat");
+	// if (file2) {
+	// 	getline(file2, line);
+	// }
 
 
-	ft_get_value(value_t_2, value_w_2, line);
+	// ft_get_value(value_t_2, value_w_2, line);
 
-	value_final_t = value_t_2 - value_t_1;
-	value_final_w = value_w_2 - value_w_1;
+	// value_final_t = value_t_1 - value_t_2;
+	// value_final_w = value_w_2 - value_w_1;
+
+	value_final_t = value_t_1;
+	value_final_w = value_w_1;
+
 
 
 	cpu = value_final_w / value_final_t * 100;
