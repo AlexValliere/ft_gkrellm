@@ -6,7 +6,7 @@
 /*   By: hades <hades@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/17 21:34:44 by hades             #+#    #+#             */
-/*   Updated: 2015/01/18 03:26:58 by hades            ###   ########.fr       */
+/*   Updated: 2015/01/18 03:41:07 by hades            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,20 +132,67 @@ std::string CPUmodule::getName( void ) const {
 	return this->_name;
 }
 
-void		CPUmodule::drawNcurses( void ) const {
+void		CPUmodule::drawNcurses( int maxWidth ) const {
+	int i = 26, j = 0, count = 0;
 	if (this->_position == 1) {
 		mvprintw(2, 2, this->getName().c_str());
+		while (count < 3) {
+			while (i < maxWidth && this->_data[j]) {
+				mvaddch(1 + count, i, this->_data[j]);
+				j++;
+				i++;
+			}
+			i = 26;
+			count++;
+		}
+
 	}
 	else if (this->_position == 2) {
 		mvprintw(6, 2, this->getName().c_str());
+		while (count < 3) {
+			while (i < maxWidth && this->_data[j]) {
+				mvaddch(5 + count, i, this->_data[j]);
+				j++;
+				i++;
+			}
+			i = 26;
+			count++;
+		}
 	}
 	else if (this->_position == 3) {
 		mvprintw(10, 2, this->getName().c_str());
+		while (count < 3) {
+			while (i < maxWidth && this->_data[j]) {
+				mvaddch(9 + count, i, this->_data[j]);
+				j++;
+				i++;
+			}
+			i = 26;
+			count++;
+		}
 	}
 	else if (this->_position == 4) {
 		mvprintw(14, 2, this->getName().c_str());
+		while (count < 3) {
+			while (i < maxWidth && this->_data[j]) {
+				mvaddch(13 + count, i, this->_data[j]);
+				j++;
+				i++;
+			}
+			i = 26;
+			count++;
+		}
 	}
 	else  {
 		mvprintw(18, 2, this->getName().c_str());
+		while (count < 3) {
+			while (i < maxWidth && this->_data[j]) {
+				mvaddch(17 + count, i, this->_data[j]);
+				j++;
+				i++;
+			}
+			i = 26;
+			count++;
+		}
 	}
 }

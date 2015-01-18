@@ -6,7 +6,7 @@
 /*   By: hades <hades@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/17 21:42:33 by hades             #+#    #+#             */
-/*   Updated: 2015/01/18 02:06:27 by hades            ###   ########.fr       */
+/*   Updated: 2015/01/18 03:46:08 by hades            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ std::string	getName( void ) const;
 
 //other
 void		findData( void );
+void		drawNcurses( int maxWidth ) const;
 
 private:
 	int			_position;

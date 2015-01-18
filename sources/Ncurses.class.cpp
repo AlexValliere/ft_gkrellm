@@ -6,7 +6,7 @@
 /*   By: hades <hades@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/17 17:20:26 by alex              #+#    #+#             */
-/*   Updated: 2015/01/18 03:25:43 by hades            ###   ########.fr       */
+/*   Updated: 2015/01/18 03:47:30 by hades            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void 			ft_draw_square( int maxHeight, int maxWidth, int i ) {
 
 
 void			Ncurses::display() {
-	CPUmodule    cpu(5);
+	CPUmodule    cpu(1);
 	DTmodule	 dt(2);
 	HSmodule	 hs(3);
 	OSmodule	 os(4);
@@ -92,7 +92,11 @@ void			Ncurses::display() {
 	while ((input = getch()) != 27)
 	{
 		clear();
-		cpu.drawNcurses();
+		cpu.drawNcurses(maxWidth);
+		dt.drawNcurses(maxWidth);
+		hs.drawNcurses(maxWidth);
+		os.drawNcurses(maxWidth);
+		r.drawNcurses(maxWidth);
 		mvprintw(maxHeight - 1, maxWidth - 25, "press esc to exit");
 		ft_draw_square( maxHeight, maxWidth, 10);
 		refresh();
