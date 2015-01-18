@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   usual_functions.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hades <hades@student.42.fr>                +#+  +:+       +#+        */
+/*   By: qde-vial <qde-vial@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/17 23:47:29 by hades             #+#    #+#             */
-/*   Updated: 2015/01/17 23:55:53 by hades            ###   ########.fr       */
+/*   Updated: 2015/01/18 17:04:43 by qde-vial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,4 +83,48 @@ void	 ft_get_value(double & t, double & w, std::string line) {
 
 	for (unsigned int i = 0; i < tab.size(); i++)
 		t = t + tab[i];
+}
+
+static void		lengths_long(long long n, size_t *len, long long *weight)
+{
+	*len = 1;
+	if (n >= 0)
+	{
+		*len = 0;
+		n = -n;
+	}
+	*weight = 1;
+	while (n / *weight < -9)
+	{
+		*weight *= 10;
+		*len += 1;
+	}
+}
+
+char			*ft_itoa_long(long long n)
+{
+	size_t		len;
+	long long	weight;
+	size_t		cur;
+	char		*str;
+
+	lengths_long(n, &len, &weight);
+	str = (char *)malloc(sizeof(*str) * (len + 1));
+	if (str == NULL)
+		return (NULL);
+	cur = 0;
+	if (n < 0)
+	{
+		str[cur] = '-';
+		cur++;
+	}
+	if (n > 0)
+		n = -n;
+	while (weight >= 1)
+	{
+		str[cur++] = -(n / weight % 10) + 48;
+		weight /= 10;
+	}
+	str[cur] = '\0';
+	return (str);
 }

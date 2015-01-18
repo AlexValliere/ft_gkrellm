@@ -6,7 +6,7 @@
 /*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/17 21:33:55 by hades             #+#    #+#             */
-/*   Updated: 2015/01/18 15:46:53 by alex             ###   ########.fr       */
+/*   Updated: 2015/01/18 18:46:26 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,9 @@ void		OSmodule::addToGtk(GtkWidget* widget) const {
 void		OSmodule::drawNcurses( int maxWidth ) const {
 	int i = 26, j = 0, count = 0;
 	if (this->_position == 1) {
+		attron(COLOR_PAIR(2));
 		mvprintw(2, 2, this->getName().c_str());
+		attroff(COLOR_PAIR(2));
 		while (count < 3) {
 			while (i < maxWidth && this->_data[j]) {
 				mvaddch(1 + count, i, this->_data[j]);
@@ -93,7 +95,9 @@ void		OSmodule::drawNcurses( int maxWidth ) const {
 
 	}
 	else if (this->_position == 2) {
+		attron(COLOR_PAIR(2));
 		mvprintw(6, 2, this->getName().c_str());
+		attroff(COLOR_PAIR(2));
 		while (count < 3) {
 			while (i < maxWidth && this->_data[j]) {
 				mvaddch(5 + count, i, this->_data[j]);
@@ -105,7 +109,9 @@ void		OSmodule::drawNcurses( int maxWidth ) const {
 		}
 	}
 	else if (this->_position == 3) {
+		attron(COLOR_PAIR(2));
 		mvprintw(10, 2, this->getName().c_str());
+		attroff(COLOR_PAIR(2));
 		while (count < 3) {
 			while (i < maxWidth && this->_data[j]) {
 				mvaddch(9 + count, i, this->_data[j]);
@@ -117,7 +123,9 @@ void		OSmodule::drawNcurses( int maxWidth ) const {
 		}
 	}
 	else if (this->_position == 4) {
+		attron(COLOR_PAIR(2));
 		mvprintw(14, 2, this->getName().c_str());
+		attroff(COLOR_PAIR(2));
 		while (count < 3) {
 			while (i < maxWidth && this->_data[j]) {
 				mvaddch(13 + count, i, this->_data[j]);
@@ -129,7 +137,9 @@ void		OSmodule::drawNcurses( int maxWidth ) const {
 		}
 	}
 	else  {
+		attron(COLOR_PAIR(2));
 		mvprintw(18, 2, this->getName().c_str());
+		attroff(COLOR_PAIR(2));
 		while (count < 3) {
 			while (i < maxWidth && this->_data[j]) {
 				mvaddch(17 + count, i, this->_data[j]);

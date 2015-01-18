@@ -6,7 +6,7 @@
 /*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/17 21:34:44 by hades             #+#    #+#             */
-/*   Updated: 2015/01/18 16:28:49 by alex             ###   ########.fr       */
+/*   Updated: 2015/01/18 18:48:14 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,7 @@ void		CPUmodule::findData( void ) {
 	std::vector<std::string>			cpu_cores_speed;
 	std::string							data;
 	std::string 						line;
-	double								value_t_1 = 0;
-	double								value_t_2 = 0;
-	double								value_w_1 = 0;
-	double								value_w_2 = 0;
-	double								value_final_t = 0;
-	double								value_final_w = 0;
-	double								cpu = 0;
+
 	std::size_t							index;
 
 	this->_CPUCoresSpeed.clear();
@@ -109,28 +103,40 @@ void		CPUmodule::findData( void ) {
 
 		for (it = cpu_cores_speed.begin(); it != cpu_cores_speed.end(); it++)
 		{
-			data =  data + "CPU speed core #" + ft_itoa(coreId) + " : " + *it;
+			data =  data + " [" + *it + "Mhz] ";
 			++coreId;
 		}
 	}
 
-	std::ifstream			file("/proc/stat");
+	double								value_t_1 = 0;
+	// double								value_t_2 = 0;
+	double								value_w_1 = 0;
+	// double								value_w_2 = 0;
+	double								value_final_t = 0;
+	double								value_final_w = 0;
+	double								cpu = 0;
+	std::ifstream						file("/proc/stat");
+
 	if (file) {
 		getline(file, line);
 	}
 
 	ft_get_value(value_t_1, value_w_1, line);
 
-	std::ifstream			file2("/proc/stat");
-	if (file2) {
-		getline(file2, line);
-	}
+	// std::ifstream			file2("/proc/stat");
+	// if (file2) {
+	// 	getline(file2, line);
+	// }
 
 
-	ft_get_value(value_t_2, value_w_2, line);
+	// ft_get_value(value_t_2, value_w_2, line);
 
-	value_final_t = value_t_2 - value_t_1;
-	value_final_w = value_w_2 - value_w_1;
+	// value_final_t = value_t_1 - value_t_2;
+	// value_final_w = value_w_2 - value_w_1;
+
+	value_final_t = value_t_1;
+	value_final_w = value_w_1;
+
 
 
 	cpu = value_final_w / value_final_t * 100;
@@ -192,7 +198,9 @@ void		CPUmodule::addToGtk(GtkWidget* widget) const {
 void		CPUmodule::drawNcurses( int maxWidth ) const {
 	int i = 26, j = 0, count = 0;
 	if (this->_position == 1) {
+		attron(COLOR_PAIR(2));
 		mvprintw(2, 2, this->getName().c_str());
+		attroff(COLOR_PAIR(2));
 		while (count < 3) {
 			while (i < maxWidth && this->_data[j]) {
 				mvaddch(1 + count, i, this->_data[j]);
@@ -205,7 +213,9 @@ void		CPUmodule::drawNcurses( int maxWidth ) const {
 
 	}
 	else if (this->_position == 2) {
+		attron(COLOR_PAIR(2));
 		mvprintw(6, 2, this->getName().c_str());
+		attroff(COLOR_PAIR(2));
 		while (count < 3) {
 			while (i < maxWidth && this->_data[j]) {
 				mvaddch(5 + count, i, this->_data[j]);
@@ -217,7 +227,9 @@ void		CPUmodule::drawNcurses( int maxWidth ) const {
 		}
 	}
 	else if (this->_position == 3) {
+		attron(COLOR_PAIR(2));
 		mvprintw(10, 2, this->getName().c_str());
+		attroff(COLOR_PAIR(2));
 		while (count < 3) {
 			while (i < maxWidth && this->_data[j]) {
 				mvaddch(9 + count, i, this->_data[j]);
@@ -229,7 +241,9 @@ void		CPUmodule::drawNcurses( int maxWidth ) const {
 		}
 	}
 	else if (this->_position == 4) {
+		attron(COLOR_PAIR(2));
 		mvprintw(14, 2, this->getName().c_str());
+		attroff(COLOR_PAIR(2));
 		while (count < 3) {
 			while (i < maxWidth && this->_data[j]) {
 				mvaddch(13 + count, i, this->_data[j]);
@@ -241,7 +255,9 @@ void		CPUmodule::drawNcurses( int maxWidth ) const {
 		}
 	}
 	else  {
+		attron(COLOR_PAIR(2));
 		mvprintw(18, 2, this->getName().c_str());
+		attroff(COLOR_PAIR(2));
 		while (count < 3) {
 			while (i < maxWidth && this->_data[j]) {
 				mvaddch(17 + count, i, this->_data[j]);
