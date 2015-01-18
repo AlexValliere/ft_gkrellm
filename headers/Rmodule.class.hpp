@@ -6,7 +6,7 @@
 /*   By: hades <hades@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/17 21:42:37 by hades             #+#    #+#             */
-/*   Updated: 2015/01/17 22:56:57 by hades            ###   ########.fr       */
+/*   Updated: 2015/01/18 02:13:46 by hades            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@ public:
 int			getPosition( void ) const;
 std::string	getData( void ) const;
 std::string	getName( void ) const;
+
+//other
+void		findData( void );
 
 private:
 int				_position;
