@@ -3,18 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   Rmodule.class.cpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hades <hades@student.42.fr>                +#+  +:+       +#+        */
+/*   By: qde-vial <qde-vial@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/17 21:35:05 by hades             #+#    #+#             */
-/*   Updated: 2015/01/18 14:57:27 by hades            ###   ########.fr       */
+/*   Updated: 2015/01/18 17:05:57 by qde-vial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
-#include <sys/sysinfo.h>
 #include <ncurses.h>
 #include "../headers/Rmodule.class.hpp"
 #include "../headers/usual_functions.hpp"
+#include <sys/types.h>
+#include <sys/sysctl.h>
+#include <unistd.h>
+#include <iostream>
+#include <mach/vm_param.h>
+#include <sys/gmon.h>
+#include <sys/socket.h>
+#include <mach/vm_statistics.h>
+#include <mach/mach_types.h>
+#include <mach/mach_init.h>
+#include <mach/mach_host.h>
 
 Rmodule::Rmodule( int position ) : _position(position), _name("RAM module") { this->findData(); return ; }
 Rmodule::~Rmodule( void ) { return ; }
@@ -35,23 +45,36 @@ std::string Rmodule::getName( void ) const {
 
 //other
 void		Rmodule::findData( void ) {
-	/* Conversion constants. */
-	const long 			minute = 60;
-	const long 			hour = minute * 60;
-	const long 			day = hour * 24;
-	std::string			data;
+    vm_size_t page_size;
+    mach_port_t mach_port;
+    mach_msg_type_number_t count;
+    vm_statistics64_data_t vm_stats;
+    std::string		data;
 
-	/* Obtain system statistics. */
-	struct sysinfo si;
-	sysinfo (&si);
+    int mib[2];
+	int64_t physical_memory;
+	mib[0] = CTL_HW;
+	mib[1] = HW_MEMSIZE;
+	size_t length = sizeof(int64_t);
+	sysctl(mib, 2, &physical_memory, &length, NULL, 0);
+	data = "total ram available : " + static_cast<std::string>(ft_itoa_long(physical_memory));
 
-	/* Summarize interesting values. */
-	data = "system uptime : " + static_cast<std::string>(ft_itoa(si.uptime / day)) + " days, " + static_cast<std::string>(ft_itoa((si.uptime % day) / hour)) + static_cast<std::string>(":") + static_cast<std::string>(ft_itoa((si.uptime % hour) / minute)) + static_cast<std::string>(":") + static_cast<std::string>(ft_itoa(si.uptime % minute));
-	data = data + " | total RAM : " + static_cast<std::string>(ft_itoa(si.totalram)) + "KB | ";
-	data = data + "free RAM : " + static_cast<std::string>(ft_itoa(si.freeram)) + "KB | ";
-	data = data + "process count : " + static_cast<std::string>(ft_itoa(si.procs));
+    mach_port = mach_host_self();
+    count = sizeof(vm_stats) / sizeof(natural_t);
+    if (KERN_SUCCESS == host_page_size(mach_port, &page_size) &&
+        KERN_SUCCESS == host_statistics64(mach_port, HOST_VM_INFO,
+                                        (host_info64_t)&vm_stats, &count))
+    {
+        long long free_memory = (int64_t)vm_stats.free_count * (int64_t)page_size;
 
-	this->_data = data;
+        long long used_memory = ((int64_t)vm_stats.active_count +
+                                 (int64_t)vm_stats.inactive_count +
+                                 (int64_t)vm_stats.wire_count) *  (int64_t)page_size;
+
+        data = data + " | free memory: " + static_cast<std::string>(ft_itoa_long(free_memory)) + " | used memory : " + static_cast<std::string>(ft_itoa_long(used_memory));
+    }
+
+    this->_data = data;
 
 }
 

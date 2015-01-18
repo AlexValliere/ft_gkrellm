@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   CPUmodule.class.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hades <hades@student.42.fr>                +#+  +:+       +#+        */
+/*   By: qde-vial <qde-vial@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/17 21:34:44 by hades             #+#    #+#             */
-/*   Updated: 2015/01/18 14:52:30 by hades            ###   ########.fr       */
+/*   Updated: 2015/01/18 18:34:25 by qde-vial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,9 +89,9 @@ void		CPUmodule::findData( void ) {
 	}
 
 	double								value_t_1 = 0;
-	// double								value_t_2 = 0;
+	double								value_t_2 = 0;
 	double								value_w_1 = 0;
-	// double								value_w_2 = 0;
+	double								value_w_2 = 0;
 	double								value_final_t = 0;
 	double								value_final_w = 0;
 	double								cpu = 0;
@@ -103,19 +103,19 @@ void		CPUmodule::findData( void ) {
 
 	ft_get_value(value_t_1, value_w_1, line);
 
-	// std::ifstream			file2("/proc/stat");
-	// if (file2) {
-	// 	getline(file2, line);
-	// }
+	std::ifstream			file2("/proc/stat");
+	if (file2) {
+		getline(file2, line);
+	}
 
 
-	// ft_get_value(value_t_2, value_w_2, line);
+	ft_get_value(value_t_2, value_w_2, line);
 
-	// value_final_t = value_t_1 - value_t_2;
-	// value_final_w = value_w_2 - value_w_1;
+	value_final_t = value_t_1 - value_t_2;
+	value_final_w = value_w_1 - value_w_2;
 
-	value_final_t = value_t_1;
-	value_final_w = value_w_1;
+	// value_final_t = value_t_1;
+	// value_final_w = value_w_1;
 
 
 
