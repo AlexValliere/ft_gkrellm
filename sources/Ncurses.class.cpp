@@ -6,13 +6,18 @@
 /*   By: hades <hades@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/17 17:20:26 by alex              #+#    #+#             */
-/*   Updated: 2015/01/17 22:37:57 by hades            ###   ########.fr       */
+/*   Updated: 2015/01/18 03:25:43 by hades            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ncurses.h>
 #include <unistd.h>
 #include "../headers/Ncurses.class.hpp"
+#include "../headers/CPUmodule.class.hpp"
+#include "../headers/DTmodule.class.hpp"
+#include "../headers/HSmodule.class.hpp"
+#include "../headers/OSmodule.class.hpp"
+#include "../headers/Rmodule.class.hpp"
 
 Ncurses::Ncurses(void) : _refreshRate(100000)	{ return ; }
 Ncurses::~Ncurses()								{ return ; }
@@ -64,8 +69,13 @@ void 			ft_draw_square( int maxHeight, int maxWidth, int i ) {
 
 
 void			Ncurses::display() {
-	int		maxHeight, maxWidth;
-	int		input = 0;
+	CPUmodule    cpu(5);
+	DTmodule	 dt(2);
+	HSmodule	 hs(3);
+	OSmodule	 os(4);
+	Rmodule	 	 r(5);
+	int			 maxHeight, maxWidth;
+	int			 input = 0;
 
 	initscr();
 	keypad(stdscr, true);
@@ -82,6 +92,7 @@ void			Ncurses::display() {
 	while ((input = getch()) != 27)
 	{
 		clear();
+		cpu.drawNcurses();
 		mvprintw(maxHeight - 1, maxWidth - 25, "press esc to exit");
 		ft_draw_square( maxHeight, maxWidth, 10);
 		refresh();

@@ -6,7 +6,7 @@
 /*   By: hades <hades@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/17 21:34:13 by hades             #+#    #+#             */
-/*   Updated: 2015/01/18 01:55:42 by hades            ###   ########.fr       */
+/*   Updated: 2015/01/18 03:03:14 by hades            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "../headers/DTmodule.class.hpp"
 #include "../headers/usual_functions.hpp"
 
-DTmodule::DTmodule( int position ) : _position(position), _name("Date/time module") { return ; }
+DTmodule::DTmodule( int position ) : _position(position), _name("Date/time module") { this->findData(); return ; }
 DTmodule::~DTmodule( void ) { return ; }
 
 

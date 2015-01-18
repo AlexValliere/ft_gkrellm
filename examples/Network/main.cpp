@@ -5,32 +5,20 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hades <hades@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/01/17 16:54:38 by alex              #+#    #+#             */
-/*   Updated: 2015/01/18 03:06:07 by hades            ###   ########.fr       */
+/*   Created: 2015/01/18 02:35:57 by hades             #+#    #+#             */
+/*   Updated: 2015/01/18 02:44:48 by hades            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include <string.h>
-#include "../headers/Ncurses.class.hpp"
+#include <linux/sysctl.h>
+#include <unistd.h>
+
+int			main( void ) {
+	struct sysctl_args  args;
+
+	sysctl(&args);
 
 
-int main(int argc, char const *argv[])
-{
 
-	if (argc == 1) {
-		/* ncurses */
-
-		Ncurses		ncurse;
-
-		ncurse.display();
-	}
-	else if (strcmp(argv[1], "-g") == 0) {
-		/* graphique */
-		std::cout << "graphique" << std::endl;
-	}
-	else {
-		std::cout << "Usage : ft_gkrellm -g for graphique mode || no parameter for console mode" << std::endl;
-	}
-	return 0;
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: hades <hades@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/17 21:35:05 by hades             #+#    #+#             */
-/*   Updated: 2015/01/18 02:24:06 by hades            ###   ########.fr       */
+/*   Updated: 2015/01/18 03:03:33 by hades            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "../headers/Rmodule.class.hpp"
 #include "../headers/usual_functions.hpp"
 
-Rmodule::Rmodule( int position ) : _position(position), _name("RAM module") { return ; }
+Rmodule::Rmodule( int position ) : _position(position), _name("RAM module") { this->findData(); return ; }
 Rmodule::~Rmodule( void ) { return ; }
 
 

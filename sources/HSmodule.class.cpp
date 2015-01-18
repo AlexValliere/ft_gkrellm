@@ -6,7 +6,7 @@
 /*   By: hades <hades@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/17 21:33:45 by hades             #+#    #+#             */
-/*   Updated: 2015/01/18 02:03:56 by hades            ###   ########.fr       */
+/*   Updated: 2015/01/18 03:03:20 by hades            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <stdlib.h>
 #include "../headers/HSmodule.class.hpp"
 
-HSmodule::HSmodule( int position ) : _position(position), _name("Hostname/username module") { return ; }
+HSmodule::HSmodule( int position ) : _position(position), _name("Hostname/username module") { this->findData(); return ; }
 HSmodule::~HSmodule( void ) { return ; }
 
 

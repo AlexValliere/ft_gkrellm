@@ -6,7 +6,7 @@
 /*   By: hades <hades@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/17 17:18:58 by alex              #+#    #+#             */
-/*   Updated: 2015/01/17 21:06:56 by hades            ###   ########.fr       */
+/*   Updated: 2015/01/18 02:57:52 by hades            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,10 @@
 # define NCURSE_CLASS_HPP
 
 # include <ncurses.h>
+# include <iostream>
+# include <vector>
 # include "IMonitorDisplay.class.hpp"
+# include "IMonitorModule.class.hpp"
 
 class Ncurses : public IMonitorDisplay
 {

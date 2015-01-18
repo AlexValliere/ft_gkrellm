@@ -6,7 +6,7 @@
 /*   By: hades <hades@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/17 21:33:55 by hades             #+#    #+#             */
-/*   Updated: 2015/01/18 02:11:52 by hades            ###   ########.fr       */
+/*   Updated: 2015/01/18 03:03:29 by hades            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <sys/utsname.h>
 #include "../headers/OSmodule.class.hpp"
 
-OSmodule::OSmodule( int position ) : _position(position), _name("OS info module") { return ; }
+OSmodule::OSmodule( int position ) : _position(position), _name("OS info module") { this->findData(); return ; }
 OSmodule::~OSmodule( void ) { return ; }
 
 

@@ -6,7 +6,7 @@
 /*   By: hades <hades@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/17 16:56:10 by alex              #+#    #+#             */
-/*   Updated: 2015/01/17 21:58:20 by hades            ###   ########.fr       */
+/*   Updated: 2015/01/18 03:08:41 by hades            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@
 class IMonitorModule
 {
 public:
-	// virtual findata() = 0;
+	virtual void 	findData() = 0;
+	// virtual	void 	draw( void ) const = 0;
 	virtual ~IMonitorModule();
 };
 
