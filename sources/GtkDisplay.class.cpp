@@ -6,14 +6,13 @@
 /*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/18 00:55:22 by alex              #+#    #+#             */
-/*   Updated: 2015/01/18 15:37:22 by alex             ###   ########.fr       */
+/*   Updated: 2015/01/18 18:07:37 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <gtk/gtk.h>
-#include "../headers/HSmodule.class.hpp"
-#include "../headers/OSmodule.class.hpp"
 #include "../headers/GtkDisplay.class.hpp"
+# include "../headers/Refresh.class.hpp"
 
 GtkDisplay::~GtkDisplay()	{ return ; }
 
@@ -22,6 +21,16 @@ void	OnDestroy(GtkWidget *pWidget, gpointer pData)
 	gtk_main_quit();
 	(void)pWidget;
 	(void)pData;
+}
+
+gboolean	OnTimeout(gpointer data)
+{
+	(void)data;
+
+	Refresh::cpu_module.findData();
+	Refresh::ram_module.findData();
+
+	return true;
 }
 
 GtkDisplay::GtkDisplay(int argc, char *argv[]) {
@@ -35,7 +44,7 @@ GtkDisplay::GtkDisplay(int argc, char *argv[]) {
 	gtk_widget_set_size_request(this->_window, 250, 600);
 	gtk_window_set_position(GTK_WINDOW(this->_window), GTK_WIN_POS_CENTER);
 	gtk_container_set_border_width(GTK_CONTAINER(this->_window), 5);
-	g_signal_connect (this->_window, "destroy", G_CALLBACK (OnDestroy), NULL);
+	g_signal_connect(this->_window, "destroy", G_CALLBACK(OnDestroy), NULL);
 
 	/* Création de la GtkBox verticale */
 	this->_pVBox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
@@ -48,6 +57,9 @@ void		GtkDisplay::addModule(IMonitorModule &module)	{ module.addToGtk(this->_pVB
 
 void		GtkDisplay::display() {
 	gtk_widget_show_all(this->_window);
+
+	g_timeout_add (100, OnTimeout, NULL);
+
 	gtk_main();
 
 	return ;

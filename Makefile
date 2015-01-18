@@ -6,7 +6,7 @@
 #    By: alex <alex@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/01/07 11:47:18 by alex              #+#    #+#              #
-#    Updated: 2015/01/18 16:47:50 by alex             ###   ########.fr        #
+#    Updated: 2015/01/18 17:51:20 by alex             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ SRC			=	sources/IMonitorDisplay.class.cpp \
 				sources/HSmodule.class.cpp \
 				sources/OSmodule.class.cpp \
 				sources/Rmodule.class.cpp \
+				sources/Refresh.class.cpp \
 				sources/usual_functions.cpp \
 				sources/main.cpp 
 

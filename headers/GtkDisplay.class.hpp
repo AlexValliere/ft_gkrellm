@@ -6,7 +6,7 @@
 /*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/18 00:55:31 by alex              #+#    #+#             */
-/*   Updated: 2015/01/18 15:37:28 by alex             ###   ########.fr       */
+/*   Updated: 2015/01/18 17:58:28 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 # define GTKDISPLAY_CLASS_HPP
 
 # include <gtk/gtk.h>
-# include "../headers/HSmodule.class.hpp"
-# include "../headers/OSmodule.class.hpp"
 # include "IMonitorDisplay.class.hpp"
 # include "IMonitorModule.class.hpp"
+# include "HSmodule.class.hpp"
+# include "OSmodule.class.hpp"
 
 class GtkDisplay : public IMonitorDisplay
 {

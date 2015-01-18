@@ -6,7 +6,7 @@
 /*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/17 16:54:38 by alex              #+#    #+#             */
-/*   Updated: 2015/01/18 16:48:08 by alex             ###   ########.fr       */
+/*   Updated: 2015/01/18 18:06:02 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include "../headers/HSmodule.class.hpp"
 #include "../headers/OSmodule.class.hpp"
 #include "../headers/Rmodule.class.hpp"
+#include "../headers/Refresh.class.hpp"
 #include "../headers/Ncurses.class.hpp"
 
 
@@ -42,11 +43,19 @@ int main(int argc, char *argv[])
 		CPUmodule		cpu_module(4);
 		Rmodule			ram_module(5);
 
-		gtk_display.addModule(host_and_user_names_module);
-		gtk_display.addModule(os_module);
-		gtk_display.addModule(datetime_module);
-		gtk_display.addModule(cpu_module);
-		gtk_display.addModule(ram_module);
+		
+		Refresh::datetime_module = datetime_module;
+		Refresh::host_and_user_names_module = host_and_user_names_module;
+		Refresh::os_module = os_module;
+		Refresh::cpu_module = cpu_module;
+		Refresh::ram_module = ram_module;
+
+		gtk_display.addModule(Refresh::host_and_user_names_module);
+		gtk_display.addModule(Refresh::os_module);
+		gtk_display.addModule(Refresh::datetime_module);
+		gtk_display.addModule(Refresh::cpu_module);
+		gtk_display.addModule(Refresh::ram_module);
+
 		gtk_display.display();
 	}
 	else {
