@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Rmodule.class.cpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hades <hades@student.42.fr>                +#+  +:+       +#+        */
+/*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/17 21:35:05 by hades             #+#    #+#             */
-/*   Updated: 2015/01/18 03:47:20 by hades            ###   ########.fr       */
+/*   Updated: 2015/01/18 16:45:30 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,23 +17,33 @@
 #include "../headers/usual_functions.hpp"
 
 Rmodule::Rmodule( int position ) : _position(position), _name("RAM module") { this->findData(); return ; }
-Rmodule::~Rmodule( void ) { return ; }
+Rmodule::~Rmodule( void )								{ return ; }
 
+Rmodule::Rmodule( Rmodule const & model )				{ *this = model; return ; }
 
-//getter
-int			Rmodule::getPosition( void ) const {
-	return this->_position;
+std::string Rmodule::getData( void ) const				{ return this->_data; }
+std::string Rmodule::getName( void ) const				{ return this->_name; }
+int			Rmodule::getPosition( void ) const			{ return this->_position; }
+
+std::string Rmodule::getFreeMem( void ) const			{ return this->_freeMem; }
+std::string Rmodule::getNbrProcess( void ) const		{ return this->_nbrProcess; }
+std::string Rmodule::getTotalMem( void ) const			{ return this->_totalMem; }
+std::string Rmodule::getUptime( void ) const			{ return this->_uptime; }
+
+Rmodule&	Rmodule::operator=( Rmodule const & model ) {
+	this->_data = model.getData();
+	this->_name = model.getName();
+	this->_position = model.getPosition();
+
+	this->_freeMem = model.getFreeMem();
+	this->_nbrProcess = model.getNbrProcess();
+	this->_totalMem = model.getTotalMem();
+	this->_uptime = model.getUptime();
+
+	return *this;
 }
 
-std::string Rmodule::getData( void ) const {
-	return this->_data;
-}
 
-std::string Rmodule::getName( void ) const {
-	return this->_name;
-}
-
-//other
 void		Rmodule::findData( void ) {
 	/* Conversion constants. */
 	const long 			minute = 60;
@@ -54,6 +64,34 @@ void		Rmodule::findData( void ) {
 
 	this->_data = data;
 
+	this->_freeMem = static_cast<std::string>(ft_itoa(si.freeram / megabyte)) + "MB";
+	this->_nbrProcess = static_cast<std::string>(ft_itoa(si.procs));
+	this->_totalMem = static_cast<std::string>(ft_itoa(si.totalram / megabyte)) + "MB";
+	this->_uptime = static_cast<std::string>(ft_itoa(si.uptime / day)) + " days, " + static_cast<std::string>(ft_itoa((si.uptime % day) / hour)) + static_cast<std::string>(":") + static_cast<std::string>(ft_itoa((si.uptime % hour) / minute)) + static_cast<std::string>(":") + static_cast<std::string>(ft_itoa(si.uptime % minute));
+}
+
+void		Rmodule::addToGtk(GtkWidget* widget) const {
+	std::string	text;
+	GtkWidget*	pFrame;
+	GtkWidget*	pLabel;
+	GtkWidget*	pVBoxFrame;
+
+	/* Creation du premier GtkFrame */
+	pFrame = gtk_frame_new(this->_name.c_str());
+	gtk_frame_set_shadow_type(GTK_FRAME(pFrame), GTK_SHADOW_ETCHED_OUT);
+	gtk_box_pack_start(GTK_BOX(widget), pFrame, FALSE, FALSE, 0);
+
+	/* Creation et insertion d une boite pour le premier GtkFrame */
+	pVBoxFrame = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
+	gtk_container_add(GTK_CONTAINER(pFrame), pVBoxFrame);
+
+	/* Creation et insertion des elements contenus dans le premier GtkFrame */
+	text = "Total memory : " + this->_totalMem + "\n";
+	text += "Free memory : " + this->_freeMem + "\n\n";
+	text += "System uptime : " + this->_uptime + "\n";
+	text += "Process count : " + this->_nbrProcess;
+	pLabel = gtk_label_new(text.c_str());
+	gtk_box_pack_start(GTK_BOX(pVBoxFrame), pLabel, TRUE, FALSE, 0);
 }
 
 void		Rmodule::drawNcurses( int maxWidth ) const {

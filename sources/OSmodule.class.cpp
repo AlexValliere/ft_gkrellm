@@ -6,13 +6,14 @@
 /*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/17 21:33:55 by hades             #+#    #+#             */
-/*   Updated: 2015/01/18 15:20:28 by alex             ###   ########.fr       */
+/*   Updated: 2015/01/18 15:46:53 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <sys/utsname.h>
 #include <ncurses.h>
+#include <gtk/gtk.h>
 #include "../headers/OSmodule.class.hpp"
 
 OSmodule::OSmodule( int position ) : _position(position), _name("OS info module") { this->findData(); return ; }
@@ -71,8 +72,7 @@ void		OSmodule::addToGtk(GtkWidget* widget) const {
 	gtk_container_add(GTK_CONTAINER(pFrame), pVBoxFrame);
 
 	/* Creation et insertion des elements contenus dans le premier GtkFrame */
-	text = this->_systemName + " " + this->_architecture + "\n";
-	text += this->_releaseVersion;
+	text = this->_systemName + " " + this->_releaseVersion + " " + this->_architecture;
 	pLabel = gtk_label_new(text.c_str());
 	gtk_box_pack_start(GTK_BOX(pVBoxFrame), pLabel, TRUE, FALSE, 0);
 }

@@ -6,7 +6,7 @@
 /*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/18 00:55:22 by alex              #+#    #+#             */
-/*   Updated: 2015/01/18 15:21:04 by alex             ###   ########.fr       */
+/*   Updated: 2015/01/18 15:37:22 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,7 @@ GtkDisplay::GtkDisplay(int argc, char *argv[]) {
 	return ;
 }
 
-void		GtkDisplay::addHSModule(HSmodule module)	{ module.addToGtk(this->_pVBox); return ; }
-void		GtkDisplay::addOSModule(OSmodule module)	{ module.addToGtk(this->_pVBox); return ; }
+void		GtkDisplay::addModule(IMonitorModule &module)	{ module.addToGtk(this->_pVBox); return ; }
 
 void		GtkDisplay::display() {
 	gtk_widget_show_all(this->_window);

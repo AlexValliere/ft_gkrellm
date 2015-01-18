@@ -3,33 +3,51 @@
 /*                                                        :::      ::::::::   */
 /*   CPUmodule.class.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hades <hades@student.42.fr>                +#+  +:+       +#+        */
+/*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/17 21:34:44 by hades             #+#    #+#             */
-/*   Updated: 2015/01/18 03:41:07 by hades            ###   ########.fr       */
+/*   Updated: 2015/01/18 16:28:49 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <fstream>
-#include <vector>
-#include <map>
 #include <algorithm>
+#include <fstream>
+#include <gtk/gtk.h>
 #include <iostream>
-#include <unistd.h>
+#include <map>
 #include <ncurses.h>
+#include <vector>
+#include <unistd.h>
 #include "../headers/CPUmodule.class.hpp"
 #include "../headers/usual_functions.hpp"
 
 
 CPUmodule::CPUmodule( int position ) : _position(position), _name("CPU module") { this->findData(); return ; }
-CPUmodule::~CPUmodule( void ) { return ; }
+CPUmodule::~CPUmodule( void )							{ return ; }
 
-//getter
-int			CPUmodule::getPosition( void ) const {
-	return this->_position;
+CPUmodule::CPUmodule( CPUmodule const & model )			{ *this = model; return ; }
+
+std::string CPUmodule::getData( void ) const			{ return this->_data; }
+std::string CPUmodule::getName( void ) const			{ return this->_name; }
+int			CPUmodule::getPosition( void ) const		{ return this->_position; }
+
+std::string	CPUmodule::getCores( void ) const			{ return this->_cores; }
+std::string	CPUmodule::getModelName( void ) const		{ return this->_modelName; }
+std::string	CPUmodule::getVendorID( void ) const		{ return this->_vendorID; }
+std::string CPUmodule::getCPUCoresSpeed( void ) const	{ return this->_CPUCoresSpeed; }
+
+CPUmodule&	CPUmodule::operator=( CPUmodule const & model ) {
+	this->_data = model.getData();
+	this->_name = model.getName();
+	this->_position = model.getPosition();
+	this->_cores = model.getCores();
+	this->_modelName = model.getModelName();
+	this->_vendorID = model.getVendorID();
+	this->_CPUCoresSpeed = model.getCPUCoresSpeed();
+
+	return *this;
 }
 
-//other
 void		CPUmodule::findData( void ) {
 	std::ifstream						fileInput("/proc/cpuinfo");
 	std::string							fileLine;
@@ -45,6 +63,8 @@ void		CPUmodule::findData( void ) {
 	double								value_final_w = 0;
 	double								cpu = 0;
 	std::size_t							index;
+
+	this->_CPUCoresSpeed.clear();
 
 	while (std::getline(fileInput, fileLine))
 	{
@@ -118,18 +138,55 @@ void		CPUmodule::findData( void ) {
 		cpu = 0;
 	}
 
-	data = data + " CPU usage : " + ft_itoa(cpu) + "\%";
+	data = data + " CPU usage : " + ft_itoa(cpu) + "\5";
 	this->_data = data;
+
+	this->_cores = cpu_info["cores"];
+	this->_modelName = cpu_info["model_name"];
+	this->_vendorID = cpu_info["vendor_id"];
+	this->_CPUCoresSpeed.clear();
+
+	if (atoi(cpu_info["cores"].c_str()) > 0)
+	{
+		std::vector<std::string>::iterator	it;
+		int	i = 1;
+		for (it = cpu_cores_speed.begin(); it != cpu_cores_speed.end(); it++)
+		{
+			if (i != 1 && (i % 2) != 0)
+				this->_CPUCoresSpeed += "\n";
+			else if (i != 1 && (i % 2) == 0)
+				this->_CPUCoresSpeed += "  ";
+			this->_CPUCoresSpeed = this->_CPUCoresSpeed + "Core #" + static_cast<std::string>(ft_itoa(i));
+			this->_CPUCoresSpeed += " :" + *it + "MHz";
+			++i;
+		}
+	}
 
 	return ;
 }
 
-std::string CPUmodule::getData( void ) const {
-	return this->_data;
-}
+void		CPUmodule::addToGtk(GtkWidget* widget) const {
+	std::string	text;
+	GtkWidget*	pFrame;
+	GtkWidget*	pLabel;
+	GtkWidget*	pVBoxFrame;
 
-std::string CPUmodule::getName( void ) const {
-	return this->_name;
+	/* Creation du premier GtkFrame */
+	pFrame = gtk_frame_new(this->_name.c_str());
+	gtk_frame_set_shadow_type(GTK_FRAME(pFrame), GTK_SHADOW_ETCHED_OUT);
+	gtk_box_pack_start(GTK_BOX(widget), pFrame, FALSE, FALSE, 0);
+
+	/* Creation et insertion d une boite pour le premier GtkFrame */
+	pVBoxFrame = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
+	gtk_container_add(GTK_CONTAINER(pFrame), pVBoxFrame);
+
+	/* Creation et insertion des elements contenus dans le premier GtkFrame */
+	text = "Model: " + this->_modelName + "\n";
+	text += "Vendor ID: " + this->_vendorID + "\n";
+	text += "Cores: " + this->_cores + "\n";
+	text += this->_CPUCoresSpeed;
+	pLabel = gtk_label_new(text.c_str());
+	gtk_box_pack_start(GTK_BOX(pVBoxFrame), pLabel, TRUE, FALSE, 0);
 }
 
 void		CPUmodule::drawNcurses( int maxWidth ) const {

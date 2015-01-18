@@ -6,7 +6,7 @@
 /*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/18 00:55:31 by alex              #+#    #+#             */
-/*   Updated: 2015/01/18 15:18:18 by alex             ###   ########.fr       */
+/*   Updated: 2015/01/18 15:37:28 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,7 @@ public:
 
 	GtkDisplay&	operator=(GtkDisplay const & rhs);
 
-	void		addHSModule(HSmodule module);
-	void		addOSModule(OSmodule module);
+	void		addModule(IMonitorModule &module);
 	void		display();
 
 private:

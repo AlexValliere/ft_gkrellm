@@ -6,15 +6,15 @@
 /*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/17 21:42:33 by hades             #+#    #+#             */
-/*   Updated: 2015/01/18 15:20:32 by alex             ###   ########.fr       */
+/*   Updated: 2015/01/18 16:33:09 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef OSMODULE_CLASS_HPP
 # define OSMODULE_CLASS_HPP
 
-# include <iostream>
 # include <gtk/gtk.h>
+# include <iostream>
 # include "IMonitorModule.class.hpp"
 
 class OSmodule : public IMonitorModule

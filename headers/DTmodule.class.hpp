@@ -3,43 +3,49 @@
 /*                                                        :::      ::::::::   */
 /*   DTmodule.class.hpp                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hades <hades@student.42.fr>                +#+  +:+       +#+        */
+/*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/17 21:42:17 by hades             #+#    #+#             */
-/*   Updated: 2015/01/18 03:42:07 by hades            ###   ########.fr       */
+/*   Updated: 2015/01/18 15:55:25 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DTMODULE_CLASS_HPP
 # define DTMODULE_CLASS_HPP
 
-#include <iostream>
-#include "../headers/usual_functions.hpp"
-#include "IMonitorModule.class.hpp"
+# include <gtk/gtk.h>
+# include <iostream>
+# include "IMonitorModule.class.hpp"
+# include "usual_functions.hpp"
 
 class DTmodule : public IMonitorModule
 {
 public:
-			DTmodule( int position );
-			~DTmodule( void );
+	DTmodule( int position );
+	DTmodule( DTmodule const & model );
+	~DTmodule( void );
 
-// getter
-int			getPosition( void ) const;
-std::string	getData( void ) const;	
-std::string	getName( void ) const;
+	DTmodule&		operator=( DTmodule const & model );
 
-//other
-void		findData( void );
-void		drawNcurses( int maxWidth ) const;
+	std::string		getData( void ) const;	
+	std::string		getName( void ) const;
+	int				getPosition( void ) const;
+
+	std::string		getDate( void ) const;
+	std::string		getTime( void ) const;
+
+	void			addToGtk(GtkWidget* widget) const;
+	void			drawNcurses( int maxWidth ) const;
+	void			findData( void );
 
 private:
-int				_position;
-std::string 	_data;
-std::string		_name;
+	int				_position;
+	std::string		_data;
+	std::string		_name;
+	std::string		_date;
+	std::string		_time;
 
-			DTmodule( void );
-			DTmodule( DTmodule const & model );
-DTmodule 	& operator=( DTmodule const & model );
+	DTmodule( void );
 };
 
 

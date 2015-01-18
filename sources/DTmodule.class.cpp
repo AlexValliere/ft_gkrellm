@@ -3,46 +3,74 @@
 /*                                                        :::      ::::::::   */
 /*   DTmodule.class.cpp                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hades <hades@student.42.fr>                +#+  +:+       +#+        */
+/*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/17 21:34:13 by hades             #+#    #+#             */
-/*   Updated: 2015/01/18 03:43:25 by hades            ###   ########.fr       */
+/*   Updated: 2015/01/18 15:51:01 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <ncurses.h>
+#include <gtk/gtk.h>
 #include "../headers/DTmodule.class.hpp"
 #include "../headers/usual_functions.hpp"
 
 DTmodule::DTmodule( int position ) : _position(position), _name("Date/time module") { this->findData(); return ; }
-DTmodule::~DTmodule( void ) { return ; }
+DTmodule::~DTmodule( void )								{ return ; }
 
+DTmodule::DTmodule( DTmodule const & model )			{ *this = model; return ; }
 
-//getter
-int			DTmodule::getPosition( void ) const {
-	return this->_position;
+std::string DTmodule::getData( void ) const				{ return this->_data; }
+std::string DTmodule::getName( void ) const				{ return this->_name; }
+int			DTmodule::getPosition( void ) const			{ return this->_position; }
+
+std::string DTmodule::getDate( void ) const				{ return this->_date; }
+std::string DTmodule::getTime( void ) const				{ return this->_time; }
+
+DTmodule&	DTmodule::operator=( DTmodule const & model ) {
+	this->_data = model.getData();
+	this->_name = model.getName();
+	this->_position = model.getPosition();
+	this->_date = model.getDate();
+	this->_time = model.getTime();
+
+	return *this;
 }
 
-std::string DTmodule::getData( void ) const {
-	return this->_data;
-}
 
-std::string DTmodule::getName( void ) const {
-	return this->_name;
-}
-
-//other
 void		DTmodule::findData( void ) {
 	std::string    data;
-	time_t t = time(0); // get time now
-	struct tm * now = localtime( & t );
+	time_t			t = time(0); // get time now
+	struct			tm * now = localtime( & t );
 
 	data = data + ft_itoa((now->tm_year + 1900)) + '-' + ft_itoa((now->tm_mon + 1)) + '-' + ft_itoa(now->tm_mday) + " // ";
-
 	data = data + ft_itoa(now->tm_hour) + ':' + ft_itoa(now->tm_min) + ':' + ft_itoa(now->tm_sec);
-
 	this->_data = data;
+
+	this->_date = static_cast<std::string>( ft_itoa((now->tm_year + 1900)) ) + '-' + static_cast<std::string>( ft_itoa((now->tm_mon + 1)) ) + '-' + static_cast<std::string>( ft_itoa(now->tm_mday) );
+	this->_time =  static_cast<std::string>( ft_itoa(now->tm_hour) ) + ':' + static_cast<std::string>( ft_itoa(now->tm_min) ) + ':' + static_cast<std::string>( ft_itoa(now->tm_sec) );
+}
+
+void		DTmodule::addToGtk(GtkWidget* widget) const {
+	std::string	text;
+	GtkWidget*	pFrame;
+	GtkWidget*	pLabel;
+	GtkWidget*	pVBoxFrame;
+
+	/* Creation du premier GtkFrame */
+	pFrame = gtk_frame_new(this->_name.c_str());
+	gtk_frame_set_shadow_type(GTK_FRAME(pFrame), GTK_SHADOW_ETCHED_OUT);
+	gtk_box_pack_start(GTK_BOX(widget), pFrame, FALSE, FALSE, 0);
+
+	/* Creation et insertion d une boite pour le premier GtkFrame */
+	pVBoxFrame = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
+	gtk_container_add(GTK_CONTAINER(pFrame), pVBoxFrame);
+
+	/* Creation et insertion des elements contenus dans le premier GtkFrame */
+	text = this->_date + " " + this->_time;
+	pLabel = gtk_label_new(text.c_str());
+	gtk_box_pack_start(GTK_BOX(pVBoxFrame), pLabel, TRUE, FALSE, 0);
 }
 
 void		DTmodule::drawNcurses( int maxWidth ) const {
