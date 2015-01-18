@@ -6,7 +6,7 @@
 /*   By: hades <hades@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/17 17:20:26 by alex              #+#    #+#             */
-/*   Updated: 2015/01/18 03:47:30 by hades            ###   ########.fr       */
+/*   Updated: 2015/01/18 14:50:31 by hades            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,11 @@ void 			ft_draw_square( int maxHeight, int maxWidth, int i ) {
 		}
 		i--;
 	}
+	mvprintw(1, 13, "1");
+	mvprintw(5, 13, "2");
+	mvprintw(9, 13, "3");
+	mvprintw(13, 13, "4");
+	mvprintw(17, 13, "5");
 
 	return ;
 }
@@ -84,6 +89,7 @@ void			Ncurses::display() {
 	curs_set(0);
 	start_color();
 	init_pair(1, COLOR_BLACK, COLOR_WHITE);
+	init_pair(2, COLOR_RED, COLOR_WHITE);
 	wbkgd(stdscr,COLOR_PAIR(1));
 	getmaxyx(stdscr, maxHeight, maxWidth);
 
@@ -92,6 +98,11 @@ void			Ncurses::display() {
 	while ((input = getch()) != 27)
 	{
 		clear();
+		cpu.findData();
+		dt.findData();
+		hs.findData();
+		os.findData();
+		r.findData();
 		cpu.drawNcurses(maxWidth);
 		dt.drawNcurses(maxWidth);
 		hs.drawNcurses(maxWidth);

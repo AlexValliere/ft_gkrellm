@@ -6,7 +6,7 @@
 /*   By: hades <hades@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/17 21:35:05 by hades             #+#    #+#             */
-/*   Updated: 2015/01/18 03:47:20 by hades            ###   ########.fr       */
+/*   Updated: 2015/01/18 14:57:27 by hades            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ void		Rmodule::findData( void ) {
 	const long 			minute = 60;
 	const long 			hour = minute * 60;
 	const long 			day = hour * 24;
-	const double 		megabyte = 1024 * 1024;
 	std::string			data;
 
 	/* Obtain system statistics. */
@@ -48,8 +47,8 @@ void		Rmodule::findData( void ) {
 
 	/* Summarize interesting values. */
 	data = "system uptime : " + static_cast<std::string>(ft_itoa(si.uptime / day)) + " days, " + static_cast<std::string>(ft_itoa((si.uptime % day) / hour)) + static_cast<std::string>(":") + static_cast<std::string>(ft_itoa((si.uptime % hour) / minute)) + static_cast<std::string>(":") + static_cast<std::string>(ft_itoa(si.uptime % minute));
-	data = data + " | total RAM : " + static_cast<std::string>(ft_itoa(si.totalram / megabyte)) + "MB | ";
-	data = data + "free RAM : " + static_cast<std::string>(ft_itoa(si.freeram / megabyte)) + "MB | ";
+	data = data + " | total RAM : " + static_cast<std::string>(ft_itoa(si.totalram)) + "KB | ";
+	data = data + "free RAM : " + static_cast<std::string>(ft_itoa(si.freeram)) + "KB | ";
 	data = data + "process count : " + static_cast<std::string>(ft_itoa(si.procs));
 
 	this->_data = data;
@@ -59,7 +58,9 @@ void		Rmodule::findData( void ) {
 void		Rmodule::drawNcurses( int maxWidth ) const {
 	int i = 26, j = 0, count = 0;
 	if (this->_position == 1) {
+		attron(COLOR_PAIR(2));
 		mvprintw(2, 2, this->getName().c_str());
+		attroff(COLOR_PAIR(2));
 		while (count < 3) {
 			while (i < maxWidth && this->_data[j]) {
 				mvaddch(1 + count, i, this->_data[j]);
@@ -72,7 +73,9 @@ void		Rmodule::drawNcurses( int maxWidth ) const {
 
 	}
 	else if (this->_position == 2) {
+		attron(COLOR_PAIR(2));
 		mvprintw(6, 2, this->getName().c_str());
+		attroff(COLOR_PAIR(2));
 		while (count < 3) {
 			while (i < maxWidth && this->_data[j]) {
 				mvaddch(5 + count, i, this->_data[j]);
@@ -84,7 +87,9 @@ void		Rmodule::drawNcurses( int maxWidth ) const {
 		}
 	}
 	else if (this->_position == 3) {
+		attron(COLOR_PAIR(2));
 		mvprintw(10, 2, this->getName().c_str());
+		attroff(COLOR_PAIR(2));
 		while (count < 3) {
 			while (i < maxWidth && this->_data[j]) {
 				mvaddch(9 + count, i, this->_data[j]);
@@ -96,7 +101,9 @@ void		Rmodule::drawNcurses( int maxWidth ) const {
 		}
 	}
 	else if (this->_position == 4) {
+		attron(COLOR_PAIR(2));
 		mvprintw(14, 2, this->getName().c_str());
+		attroff(COLOR_PAIR(2));
 		while (count < 3) {
 			while (i < maxWidth && this->_data[j]) {
 				mvaddch(13 + count, i, this->_data[j]);
@@ -108,7 +115,9 @@ void		Rmodule::drawNcurses( int maxWidth ) const {
 		}
 	}
 	else  {
+		attron(COLOR_PAIR(2));
 		mvprintw(18, 2, this->getName().c_str());
+		attroff(COLOR_PAIR(2));
 		while (count < 3) {
 			while (i < maxWidth && this->_data[j]) {
 				mvaddch(17 + count, i, this->_data[j]);

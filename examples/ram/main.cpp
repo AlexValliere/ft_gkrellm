@@ -6,7 +6,7 @@
 /*   By: hades <hades@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/12 12:46:47 by hades             #+#    #+#             */
-/*   Updated: 2015/01/17 17:32:05 by hades            ###   ########.fr       */
+/*   Updated: 2015/01/18 14:11:29 by hades            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 #include <stdio.h>
 #include <sys/sysinfo.h>
+#include <iostream>
 
 int				main( void ) {
 
@@ -27,11 +28,16 @@ int				main( void ) {
 	 struct sysinfo si;
 	 sysinfo (&si);
 
+
+	 while (42) {
+	 	
+
 	 /* Summarize interesting values. */
 	 std::cout << "system uptime : " << (si.uptime / day) << " days, " << (si.uptime % day) / hour << ":" << (si.uptime % hour) / minute << ":" << si.uptime % minute << std::endl;
 	 std::cout << "total RAM : " << si.totalram / megabyte << "MB" << std::endl;
 	 std::cout << "free RAM : " << si.freeram / megabyte << "MB" << std::endl;
 	 std::cout << "process count : " << si.procs << std::endl;
+	 }
 
 	return (0);
 }
